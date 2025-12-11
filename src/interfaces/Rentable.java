@@ -1,7 +1,6 @@
 package interfaces;
 
-public class Rentable {
-
-	
-
+public interface Rentable {
+    double calculateRentalFee(int days);
 }
+
