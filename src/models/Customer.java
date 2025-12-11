@@ -16,4 +16,10 @@ public class Customer {
     public String getIdNumber() {
         return idNumber;
     }
+    @Override
+    public String toString() {
+        return "Customer: " + name + " (ID: " + idNumber + ")";
+    }
+
 }
+
