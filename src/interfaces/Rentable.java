@@ -1,6 +1,7 @@
 package interfaces;
 
 public interface Rentable {
-    double calculateRentalFee(int days);
+	void rent();
+    void returnVehicle();
 }
 
