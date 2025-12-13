@@ -1,14 +1,36 @@
 package models;
 
-public class ElectricCar {
-	private int batteryCapacity; // kWh
+public class ElectricCar extends Car {
 
-	public int getBatteryCapacity() {
-		return batteryCapacity;
+    private int batteryCapacity; // kWh
+
+    public ElectricCar(String id, String brand, String model, int year, int batteryCapacity) {
+        super(id, brand, model, year);
+        this.batteryCapacity = batteryCapacity;
+    }
+
+    public int getBatteryCapacity() {
+        return batteryCapacity;
+    }
+
+    public void setBatteryCapacity(int batteryCapacity) {
+        this.batteryCapacity = batteryCapacity;
+    }
+
+    @Override
+    public double calculateRentalFee(int days) {
+        return days * 250;
+    }
+
+	@Override
+	public void rent() {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void setBatteryCapacity(int batteryCapacity) {
-		this.batteryCapacity = batteryCapacity;
+	@Override
+	public void returnVehicle() {
+		// TODO Auto-generated method stub
+		
 	}
-
 }
