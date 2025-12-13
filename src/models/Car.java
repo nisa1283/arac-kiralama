@@ -1,6 +1,7 @@
 package models;
+import interfaces.Rentable;
 
-public abstract class Car {
+public abstract class Car implements Rentable{
 	    private String id;
 	    private String brand;
 	    private String model;
