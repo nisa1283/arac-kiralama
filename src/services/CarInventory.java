@@ -6,10 +6,18 @@ import models.Car;
 
 public class CarInventory {
 
-    private List<Car> cars = new ArrayList<>();
+    private List<Car> cars;
+
+    public CarInventory() {
+        this.cars = new ArrayList<>();
+    }
 
     public void addCar(Car car) {
         cars.add(car);
+    }
+
+    public void removeCar(String carId) {
+        cars.removeIf(car -> car.getId().equals(carId));
     }
 
     public List<Car> listAvailableCars() {
@@ -20,5 +28,9 @@ public class CarInventory {
             }
         }
         return availableCars;
+    }
+
+    public List<Car> getAllCars() {
+        return cars;
     }
 }
