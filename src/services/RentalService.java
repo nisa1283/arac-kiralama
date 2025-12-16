@@ -6,11 +6,15 @@ public class RentalService {
 
     public void rentCar(Car car) {
         if (car.isAvailable()) {
-            car.setAvailable(false);
+            car.rent();
+            System.out.println("Araç kiralandı: " + car);
+        } else {
+            System.out.println("Araç zaten kiralanmış: " + car);
         }
     }
 
     public void returnCar(Car car) {
-        car.setAvailable(true);
+        car.returnVehicle();
+        System.out.println("Araç iade edildi: " + car);
     }
 }
