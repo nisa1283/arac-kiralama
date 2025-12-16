@@ -22,15 +22,5 @@ public class ElectricCar extends Car {
         return days * 250;
     }
 
-	@Override
-	public void rent() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void returnVehicle() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

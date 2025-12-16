@@ -48,6 +48,19 @@ public abstract class Car implements Rentable{
 	    public String toString() {
 	        return brand + " " + model + " (" + year + ") - ID: " + id;
 	    }
+	    @Override
+	    public void rent() {
+	        if (available) {
+	            available = false;
+	        } else {
+	            System.out.println("Araç zaten kiralanmış.");
+	        }
+	    }
+	    @Override
+	    public void returnVehicle() {
+	        available = true;
+	    }
+
 
 
 }
