@@ -61,6 +61,11 @@ public abstract class Car implements Rentable{
 	        available = true;
 	    }
 
+	    public double getDailyPrice() {
+	        return calculateRentalFee(1);
+	    }
+
+
 
 
 }

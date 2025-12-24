@@ -21,6 +21,7 @@ public class Main {
             System.out.println("1 - Müsait araçları listele");
             System.out.println("2 - Araç kirala");
             System.out.println("3 - Araç iade et");
+            System.out.println("4 - Kiralama geçmişini göster");
             System.out.println("0 - Çıkış");
             System.out.print("Seçiminiz: ");
 
@@ -28,30 +29,45 @@ public class Main {
             scanner.nextLine(); // buffer temizleme
 
             switch (choice) {
+
                 case 1:
                     System.out.println("\nMüsait araçlar:");
-                    inventory.listAvailableCars().forEach(System.out::println);
+                    for (Car car : inventory.listAvailableCars()) {
+                        System.out.println(
+                            car + " | Günlük Ücret: " + car.getDailyPrice() + " TL"
+                        );
+                    }
                     break;
 
                 case 2:
                     System.out.print("Kiralanacak araç ID: ");
                     String rentId = scanner.nextLine();
+
                     Car carToRent = inventory.getAllCars()
                             .stream()
                             .filter(c -> c.getId().equals(rentId))
                             .findFirst()
                             .orElse(null);
 
-                    if (carToRent != null) {
-                        rentalService.rentCar(carToRent);
-                    } else {
+                    if (carToRent == null) {
                         System.out.println("Araç bulunamadı.");
+                        break;
                     }
+
+                    System.out.print("Müşteri adı: ");
+                    String customerName = scanner.nextLine();
+
+                    System.out.print("Kaç gün kiralanacak?: ");
+                    int days = scanner.nextInt();
+                    scanner.nextLine();
+
+                    rentalService.rentCar(carToRent, customerName, days);
                     break;
 
                 case 3:
                     System.out.print("İade edilecek araç ID: ");
                     String returnId = scanner.nextLine();
+
                     Car carToReturn = inventory.getAllCars()
                             .stream()
                             .filter(c -> c.getId().equals(returnId))
@@ -62,6 +78,22 @@ public class Main {
                         rentalService.returnCar(carToReturn);
                     } else {
                         System.out.println("Araç bulunamadı.");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("\n=== KİRALAMA GEÇMİŞİ ===");
+                    if (rentalService.getRentalHistory().isEmpty()) {
+                        System.out.println("Henüz kiralama yapılmadı.");
+                    } else {
+                        rentalService.getRentalHistory().forEach(record -> {
+                            System.out.println("Araç: " + record.getCar());
+                            System.out.println("Müşteri: " + record.getCustomerName());
+                            System.out.println("Kiralama tarihi: " + record.getRentalDate());
+                            System.out.println("Süre: " + record.getRentalDays() + " gün");
+                            System.out.println("Toplam ücret: " + record.getTotalFee() + " TL");
+                            System.out.println("----------------------");
+                        });
                     }
                     break;
 
