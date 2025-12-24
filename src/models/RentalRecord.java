@@ -31,4 +31,9 @@ public class RentalRecord {
     public LocalDate getRentalDate() {
         return rentalDate;
     }
+
+	public String getTotalFee() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
