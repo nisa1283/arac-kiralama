@@ -1,71 +1,38 @@
 package models;
+
 import interfaces.Rentable;
 
-public abstract class Car implements Rentable{
-	    private String id;
-	    private String brand;
-	    private String model;
-	    private int year;
-	    private boolean available = true; // araç başlangıçta müsait
+public abstract class Car extends Vehicle implements Rentable {
 
-	    public Car(String id, String brand, String model, int year) {
-	        this.id = id;
-	        this.brand = brand;
-	        this.model = model;
-	        this.year = year;
-	    }
+    protected boolean available = true;
 
-	    // Getter & Setter (Encapsulation)
+    public Car(String brand, String model, double dailyPrice) {
+        super(brand, model, dailyPrice);
+    }
 
-	    public String getId() {
-	        return id;
-	    }
+    public boolean isAvailable() {
+        return available;
+    }
 
-	    public String getBrand() {
-	        return brand;
-	    }
+    @Override
+    public void rent() {
+        if (available) {
+            available = false;
+        } else {
+            System.out.println("Araç zaten kiralanmış.");
+        }
+    }
 
-	    public String getModel() {
-	        return model;
-	    }
+    @Override
+    public void returnVehicle() {
+        available = true;
+    }
 
-	    public int getYear() {
-	        return year;
-	    }
+    // Her araç türü kendi ücret hesabını yapacak
+    public abstract double calculateRentalFee(int days);
 
-	    public boolean isAvailable() {
-	        return available;
-	    }
-
-	    public void setAvailable(boolean available) {
-	        this.available = available;
-	    }
-
-	    // Polimorfik metod
-	    public abstract double calculateRentalFee(int days);
-
-	    @Override
-	    public String toString() {
-	        return brand + " " + model + " (" + year + ") - ID: " + id;
-	    }
-	    @Override
-	    public void rent() {
-	        if (available) {
-	            available = false;
-	        } else {
-	            System.out.println("Araç zaten kiralanmış.");
-	        }
-	    }
-	    @Override
-	    public void returnVehicle() {
-	        available = true;
-	    }
-
-	    public double getDailyPrice() {
-	        return calculateRentalFee(1);
-	    }
-
-
-
-
+    @Override
+    public String toString() {
+        return brand + " " + model + " - Günlük: " + dailyPrice + " TL";
+    }
 }
