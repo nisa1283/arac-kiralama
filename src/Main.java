@@ -30,14 +30,42 @@ public class Main {
 
             switch (choice) {
 
-                case 1:
-                    System.out.println("\nMüsait araçlar:");
-                    for (Car car : inventory.listAvailableCars()) {
-                        System.out.println(
-                            car + " | Günlük Ücret: " + car.getDailyPrice() + " TL"
+            case 1:
+                System.out.println("\nAraç türü seçiniz:");
+                System.out.println("1 - Tüm araçlar");
+                System.out.println("2 - Elektrikli araçlar");
+                System.out.println("3 - Benzinli araçlar");
+                System.out.print("Seçiminiz: ");
+
+                int typeChoice = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("\nMüsait araçlar:");
+
+                switch (typeChoice) {
+                    case 1:
+                        inventory.listAvailableCars().forEach(car ->
+                            System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice() + " TL")
                         );
-                    }
-                    break;
+                        break;
+
+                    case 2:
+                        inventory.listAvailableCarsByType(ElectricCar.class).forEach(car ->
+                            System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice() + " TL")
+                        );
+                        break;
+
+                    case 3:
+                        inventory.listAvailableCarsByType(GasCar.class).forEach(car ->
+                            System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice() + " TL")
+                        );
+                        break;
+
+                    default:
+                        System.out.println("Geçersiz seçim.");
+                }
+                break;
+
 
                 case 2:
                     System.out.print("Kiralanacak araç ID: ");

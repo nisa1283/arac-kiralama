@@ -33,4 +33,14 @@ public class CarInventory {
     public List<Car> getAllCars() {
         return cars;
     }
+    public List<Car> listAvailableCarsByType(Class<? extends Car> type) {
+        List<Car> result = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.isAvailable() && type.isInstance(car)) {
+                result.add(car);
+            }
+        }
+        return result;
+    }
+
 }
