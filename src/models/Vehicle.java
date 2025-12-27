@@ -5,12 +5,14 @@ public abstract class Vehicle {
     protected String id;
     protected String brand;
     protected String model;
+    protected int year;
     protected double dailyPrice;
 
-    public Vehicle(String id, String brand, String model, double dailyPrice) {
+    public Vehicle(String id, String brand, String model,int year, double dailyPrice) {
         this.id = id;
         this.brand = brand;
         this.model = model;
+        this.year=year;
         this.dailyPrice = dailyPrice;
     }
 
@@ -25,7 +27,11 @@ public abstract class Vehicle {
     public String getModel() {
         return model;
     }
-
+    
+    public int year() {
+        return year;
+    }
+    
     public double getDailyPrice() {
         return dailyPrice;
     }

@@ -11,8 +11,8 @@ public class Main {
         RentalService rentalService = new RentalService();
 
         // Başlangıç araçları
-        inventory.addCar(new ElectricCar("E1", "Tesla", "Model 3", 2022, 75));
-        inventory.addCar(new GasCar("G1", "Toyota", "Corolla", 2020, 50));
+        inventory.addCar(new ElectricCar("E1", "Tesla", "Model 3", 2022, 250));
+        inventory.addCar(new GasCar("G1", "Toyota", "Corolla", 2020, 200));
 
         boolean running = true;
 
