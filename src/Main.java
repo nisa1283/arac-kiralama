@@ -12,7 +12,11 @@ public class Main {
 
         // Başlangıç araçları
         inventory.addCar(new ElectricCar("E1", "Tesla", "Model 3", 2022, 250));
-        inventory.addCar(new GasCar("G1", "Toyota", "Corolla", 2020, 200));
+        inventory.addCar(new ElectricCar("E2", "Mercedes","CLA",2025,450));
+        inventory.addCar(new GasCar("G1", "Toyota", "Corolla", 2020, 200, Transmission.AUTOMATIC));
+        inventory.addCar(new GasCar("G2", "Fiat", "Egea", 2021, 180, Transmission.MANUAL));
+
+
 
         boolean running = true;
 
@@ -31,28 +35,34 @@ public class Main {
             switch (choice) {
 
             case 1:
-                System.out.println("\nAraç türü seçiniz:");
-                System.out.println("1 - Tüm araçlar");
-                System.out.println("2 - Elektrikli araçlar");
-                System.out.println("3 - Benzinli araçlar");
-                System.out.print("Seçiminiz: ");
+            	System.out.println("1 - Elektrikli araçlar");
+            	System.out.println("2 - Gazlı araçlar");
+            	int typeChoice = scanner.nextInt();
+            	scanner.nextLine();
 
-                int typeChoice = scanner.nextInt();
-                scanner.nextLine();
 
                 System.out.println("\nMüsait araçlar:");
 
                 switch (typeChoice) {
                     case 1:
-                        inventory.listAvailableCars().forEach(car ->
+                        inventory.listAvailableCarsByType(ElectricCar.class).forEach(car ->
                             System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice() + " TL")
                         );
                         break;
 
                     case 2:
-                        inventory.listAvailableCarsByType(ElectricCar.class).forEach(car ->
-                            System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice() + " TL")
-                        );
+                    	System.out.println("1 - Manuel");
+                        System.out.println("2 - Otomatik");
+                        int t = scanner.nextInt();
+                        scanner.nextLine();
+
+                        Transmission tr = (t == 1)
+                            ? Transmission.MANUAL
+                            : Transmission.AUTOMATIC;
+
+                        for (GasCar car : inventory.listAvailableGasCarsByTransmission(tr)) {
+                            System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice());
+                        }
                         break;
 
                     case 3:

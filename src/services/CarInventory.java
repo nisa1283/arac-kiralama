@@ -3,6 +3,9 @@ package services;
 import java.util.ArrayList;
 import java.util.List;
 import models.Car;
+import models.GasCar;
+import models.Transmission;
+
 
 public class CarInventory {
 
@@ -42,5 +45,19 @@ public class CarInventory {
         }
         return result;
     }
+    public List<GasCar> listAvailableGasCarsByTransmission(Transmission transmission) {
+        List<GasCar> result = new ArrayList<>();
+
+        for (Car car : cars) {
+            if (car.isAvailable() && car instanceof GasCar) {
+                GasCar gasCar = (GasCar) car;
+                if (gasCar.getTransmission() == transmission) {
+                    result.add(gasCar);
+                }
+            }
+        }
+        return result;
+    }
+
 
 }

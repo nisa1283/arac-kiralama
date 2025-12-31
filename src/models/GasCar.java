@@ -3,13 +3,19 @@ package models;
 public class GasCar extends Car {
 
 
-    public GasCar(String id, String brand, String model, int year,double dailyPrice) {
+    public GasCar(String id, String brand, String model, int year,double dailyPrice, Transmission transmission) {
         super(id, brand, model, year, dailyPrice);
+        this.transmission = transmission;
     }
 
     @Override
     public double calculateRentalFee(int days) {
         return days * 200;
+    }
+    private Transmission transmission;
+    
+    public Transmission getTransmission() {
+        return transmission;
     }
 
 	
