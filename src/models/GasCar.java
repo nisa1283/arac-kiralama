@@ -8,15 +8,18 @@ public class GasCar extends Car {
         this.transmission = transmission;
     }
 
-    @Override
-    public double calculateRentalFee(int days) {
-        return days * 200;
-    }
+	@Override
+	public double calculateRentalFee(int days) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
     private Transmission transmission;
     
     public Transmission getTransmission() {
         return transmission;
     }
+
 
 	
 }

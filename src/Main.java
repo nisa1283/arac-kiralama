@@ -12,11 +12,10 @@ public class Main {
 
         // Başlangıç araçları
         inventory.addCar(new ElectricCar("E1", "Tesla", "Model 3", 2022, 250));
-        inventory.addCar(new ElectricCar("E2", "Mercedes","CLA",2025,450));
-        inventory.addCar(new GasCar("G1", "Toyota", "Corolla", 2020, 200, Transmission.AUTOMATIC));
-        inventory.addCar(new GasCar("G2", "Fiat", "Egea", 2021, 180, Transmission.MANUAL));
-
-
+        inventory.addCar(new ElectricCar("E2", "BMW", "i4", 2023, 300));
+        inventory.addCar(new GasCar("G1", "Fiat", "Egea", 2021, 180, Transmission.MANUAL));
+        inventory.addCar(new GasCar("G2", "Honda", "Civic", 2022, 220, Transmission.AUTOMATIC));
+        inventory.addCar(new GasCar("G3", "Toyota", "Corolla", 2020, 200, Transmission.AUTOMATIC));
 
         boolean running = true;
 
