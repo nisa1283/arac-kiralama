@@ -60,14 +60,8 @@ public class Main {
                             : Transmission.AUTOMATIC;
 
                         for (GasCar car : inventory.listAvailableGasCarsByTransmission(tr)) {
-                            System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice());
+                            System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice() +" TL");
                         }
-                        break;
-
-                    case 3:
-                        inventory.listAvailableCarsByType(GasCar.class).forEach(car ->
-                            System.out.println(car + " | Günlük Ücret: " + car.getDailyPrice() + " TL")
-                        );
                         break;
 
                     default:

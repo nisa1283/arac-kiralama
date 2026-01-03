@@ -10,8 +10,7 @@ public class GasCar extends Car {
 
 	@Override
 	public double calculateRentalFee(int days) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dailyPrice * days;
 	}
 
     private Transmission transmission;

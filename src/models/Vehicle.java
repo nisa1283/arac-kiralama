@@ -28,7 +28,7 @@ public abstract class Vehicle {
         return model;
     }
     
-    public int year() {
+    public int getYear() {
         return year;
     }
     

@@ -9,7 +9,7 @@ public class ElectricCar extends Car {
 
     @Override
     public double calculateRentalFee(int days) {
-        return days * 250;
+    	return dailyPrice * days;
     }
 
 	
