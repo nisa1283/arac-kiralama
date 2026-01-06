@@ -1,7 +1,18 @@
 package interfaces;
 
+/**
+ * Kiralanabilir nesneler için tanımlanmış arayüzdür.
+ */
 public interface Rentable {
-	void rent();
+
+    /**
+     * Nesneyi kiralar.
+     */
+    void rent();
+
+    /**
+     * Nesneyi iade eder.
+     */
     void returnVehicle();
 }
 

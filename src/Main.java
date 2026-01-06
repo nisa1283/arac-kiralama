@@ -2,8 +2,20 @@ import java.util.Scanner;
 import models.*;
 import services.*;
 
+/**
+ * Araç Kiralama Sistemi Ana Sınıfı
+ * Bu sınıf kullanıcı arayüzünü yönetir ve sistemin ana akışını kontrol eder.
+ * Kullanıcılar bu arayüz üzerinden araç kiralama, iade etme ve listeleme işlemlerini gerçekleştirebilir.
+ * 
+ * @author [nisa]
+ */
 public class Main {
-
+    /**
+     * Programın başlangıç noktası.
+     * Kullanıcı menüsünü gösterir ve kullanıcı girişlerine göre işlem yapar.
+     * 
+     * @param args Komut satırı argümanları
+     */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -34,11 +46,10 @@ public class Main {
             switch (choice) {
 
             case 1:
-            	System.out.println("1 - Elektrikli araçlar");
-            	System.out.println("2 - Gazlı araçlar");
-            	int typeChoice = scanner.nextInt();
-            	scanner.nextLine();
-
+                System.out.println("1 - Elektrikli araçlar");
+                System.out.println("2 - Gazlı araçlar");
+                int typeChoice = scanner.nextInt();
+                scanner.nextLine();
 
                 System.out.println("\nMüsait araçlar:");
 
@@ -50,7 +61,7 @@ public class Main {
                         break;
 
                     case 2:
-                    	System.out.println("1 - Manuel");
+                        System.out.println("1 - Manuel");
                         System.out.println("2 - Otomatik");
                         int t = scanner.nextInt();
                         scanner.nextLine();
@@ -70,30 +81,74 @@ public class Main {
                 break;
 
 
-                case 2:
-                    System.out.print("Kiralanacak araç ID: ");
-                    String rentId = scanner.nextLine();
+            case 2:
+                System.out.print("Kiralanacak araç ID: ");
+                String rentId = scanner.nextLine();
 
-                    Car carToRent = inventory.getAllCars()
-                            .stream()
-                            .filter(c -> c.getId().equals(rentId))
-                            .findFirst()
-                            .orElse(null);
+                Car carToRent = inventory.getAllCars()
+                        .stream()
+                        .filter(c -> c.getId().equals(rentId))
+                        .findFirst()
+                        .orElse(null);
 
-                    if (carToRent == null) {
-                        System.out.println("Araç bulunamadı.");
-                        break;
-                    }
-
-                    System.out.print("Müşteri adı: ");
-                    String customerName = scanner.nextLine();
-
-                    System.out.print("Kaç gün kiralanacak?: ");
-                    int days = scanner.nextInt();
-                    scanner.nextLine();
-
-                    rentalService.rentCar(carToRent, customerName, days);
+                if (carToRent == null) {
+                    System.out.println("Araç bulunamadı.");
                     break;
+                }
+
+                System.out.print("Müşteri adı: ");
+                String name = scanner.nextLine();
+
+                System.out.print("Telefon: ");
+                String phone = scanner.nextLine();
+
+                Customer customer = new Customer(name, phone);
+
+                System.out.print("Kaç gün kiralanacak?: ");
+                int days = scanner.nextInt();
+                scanner.nextLine();
+
+                // VALİDASYON BURAYA EKLENDİ! ⭐
+                if (days <= 0) {
+                    System.out.println("❌ Geçersiz gün sayısı! Lütfen pozitif bir sayı girin.");
+                    break;
+                }
+
+                System.out.println("Ödeme yöntemi seçin:");
+                System.out.println("1 - Kredi Kartı");
+                System.out.println("2 - Havale");
+                System.out.println("3 - Nakit");
+
+                int pm = scanner.nextInt();
+                scanner.nextLine();
+
+                PaymentMethod method =
+                    pm == 1 ? PaymentMethod.CREDIT_CARD :
+                    pm == 2 ? PaymentMethod.BANK_TRANSFER :
+                              PaymentMethod.CASH;
+
+                Payment payment = new Payment(carToRent.calculateRentalFee(days), method);
+
+                if (method == PaymentMethod.CREDIT_CARD) {
+                    System.out.print("Kart Sahibi Adı: ");
+                    String cardHolder = scanner.nextLine();
+
+                    System.out.print("Kart Numarası: ");
+                    String cardNumber = scanner.nextLine();
+
+                    System.out.print("Son Kullanma Tarihi (AA/YY): ");
+                    String expiry = scanner.nextLine();
+
+                    System.out.print("CVV: ");
+                    String cvv = scanner.nextLine();
+
+                    payment.setCardInfo(cardHolder, cardNumber, expiry, cvv);
+                }
+
+                rentalService.rentCar(carToRent, customer, days, payment);
+
+                break;
+
 
                 case 3:
                     System.out.print("İade edilecek araç ID: ");
@@ -118,15 +173,12 @@ public class Main {
                         System.out.println("Henüz kiralama yapılmadı.");
                     } else {
                         rentalService.getRentalHistory().forEach(record -> {
-                            System.out.println("Araç: " + record.getCar());
-                            System.out.println("Müşteri: " + record.getCustomerName());
-                            System.out.println("Kiralama tarihi: " + record.getRentalDate());
-                            System.out.println("Süre: " + record.getRentalDays() + " gün");
-                            System.out.println("Toplam ücret: " + record.getTotalFee() + " TL");
+                            System.out.println(record);
                             System.out.println("----------------------");
                         });
                     }
                     break;
+
 
                 case 0:
                     running = false;

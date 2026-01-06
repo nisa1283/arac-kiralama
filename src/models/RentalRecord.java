@@ -2,33 +2,50 @@ package models;
 
 import java.time.LocalDate;
 
+/**
+ * Bir kiralama işleminin tüm detaylarını tutan sınıftır.
+ * Araç, müşteri, süre, ücret, ödeme ve iade durumu bilgilerini içerir.
+ */
+
 public class RentalRecord {
 
     private Car car;
-    private String customerName;
-    private int rentalDays;
+    private Customer customer;
+    private int days;
     private LocalDate rentalDate;
     private double totalFee;
-
-    public RentalRecord(Car car, String customerName, int rentalDays) {
+    private boolean returned;
+    private Payment payment;
+    
+    /**
+     * Yeni bir kiralama kaydı oluşturur.
+     *
+     * @param car Kiralanan araç
+     * @param customer Müşteri bilgisi
+     * @param days Kiralama süresi
+     * @param payment Ödeme bilgisi
+     */
+    
+    public RentalRecord(Car car, Customer customer, int days, Payment payment) {
         this.car = car;
-        this.customerName = customerName;
-        this.rentalDays = rentalDays;
+        this.customer = customer;
+        this.days = days;
+        this.payment = payment;
         this.rentalDate = LocalDate.now();
-
-        this.totalFee = car.calculateRentalFee(rentalDays);
+        this.totalFee = car.calculateRentalFee(days);
+        this.returned = false;
     }
 
     public Car getCar() {
         return car;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public int getRentalDays() {
-        return rentalDays;
+    public int getDays() {
+        return days;
     }
 
     public LocalDate getRentalDate() {
@@ -39,12 +56,23 @@ public class RentalRecord {
         return totalFee;
     }
 
+    public boolean isReturned() {
+        return returned;
+    }
+
+    public void setReturned(boolean returned) {
+        this.returned = returned;
+    }
+
     @Override
     public String toString() {
-        return "Araç: " + car +
-               "\nMüşteri: " + customerName +
-               "\nKiralama tarihi: " + rentalDate +
-               "\nSüre: " + rentalDays + " gün" +
-               "\nToplam ücret: " + totalFee + " TL\n";
+        return
+            "Araç: " + car + "\n" +
+            "Müşteri: " + customer + "\n" +
+            "Kiralama tarihi: " + rentalDate + "\n" +
+            "Süre: " + days + " gün\n" +
+            "Toplam ücret: " + totalFee + " TL\n" +
+            "Durum: " + (returned ? "İade Edildi" : "Devam Ediyor") +
+            (payment != null ? "\nÖdeme: " + payment : "");
     }
 }
