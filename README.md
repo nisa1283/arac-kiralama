@@ -56,33 +56,6 @@ src
 │
 └── Main.java
 
-##🚘 Sistem Özellikleri
-
-Elektrikli ve benzinli araçlar
-
-Manuel / otomatik vites ayrımı
-
-Araç müsaitlik kontrolü
-
-Araç kiralama ve iade işlemleri
-
-Kiralama geçmişi takibi
-
-Ödeme yöntemleri:
-
-Kredi Kartı
-
-Havale (IBAN bilgisi)
-
-Nakit
-
-Kredi kartı için kart bilgisi doğrulama
-
-JavaDoc ile dokümantasyon
-
-
----
-
 ## 💳 Ödeme Sistemi
 
 Desteklenen ödeme yöntemleri:
