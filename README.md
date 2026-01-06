@@ -1,4 +1,4 @@
-🚗 Araç Kiralama Sistemi (Java)
+#🚗 Araç Kiralama Sistemi (Java)
 
 Bu proje, nesne yönelimli programlama (OOP) prensipleri kullanılarak geliştirilmiş console tabanlı bir araç kiralama sistemidir.
 Proje, Java dili ile yazılmış olup eğitim amaçlıdır.
@@ -7,7 +7,7 @@ Proje, Java dili ile yazılmış olup eğitim amaçlıdır.
 Repository açıldığında main branch üzerinde yalnızca bu README bulunmaktadır.
 Tüm kaynak kodlar master branch’inde yer almaktadır.
 
-📌 Projenin Amacı
+##📌 Projenin Amacı
 
 Bu projenin amacı:
 
@@ -17,7 +17,7 @@ Gerçek hayata yakın bir araç kiralama senaryosu modellemek
 
 Katmanlı ve düzenli bir proje yapısı oluşturmaktır
 
-🧩 Kullanılan Teknolojiler
+##🧩 Kullanılan Teknolojiler
 
 Java 21
 
@@ -27,7 +27,7 @@ JUnit (unit testler için)
 
 JavaDoc (dokümantasyon için)
 
-🏗️ Proje Yapısı
+##🏗️ Proje Yapısı
 src/
  ├─ models/
  │   ├─ Car
@@ -46,7 +46,7 @@ src/
  │
  └─ Main.java
 
-🚘 Sistem Özellikleri
+##🚘 Sistem Özellikleri
 
 Elektrikli ve benzinli araçlar
 
@@ -70,7 +70,7 @@ Kredi kartı için kart bilgisi doğrulama
 
 JavaDoc ile dokümantasyon
 
-▶️ Programın Çalışma Mantığı
+##▶️ Programın Çalışma Mantığı
 
 Kullanıcı konsol üzerinden:
 
@@ -84,25 +84,25 @@ Kiralama geçmişini görüntüler
 
 Tüm işlemler RentalService ve CarInventory sınıfları üzerinden yönetilir.
 
-🧪 Testler
+##🧪 Testler
 
 Temel işlevler için JUnit testleri yazılmıştır
 
 Kiralama, iade ve ödeme senaryoları test edilmiştir
 
-📚 Dokümantasyon
+##📚 Dokümantasyon
 
 Projedeki tüm sınıflar ve metotlar JavaDoc ile açıklanmıştır
 
 javadoc komutu ile /doc klasörü oluşturulabilir
 
-📌 Branch Bilgisi
+##📌 Branch Bilgisi
 
 main → README (tanıtım amaçlı)
 
 master → Tüm proje kaynak kodları
 
-👤 Geliştirici
+##👤 Geliştirici
 
 Öğrenci Projesi
 
