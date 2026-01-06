@@ -1,50 +1,60 @@
-#🚗 Araç Kiralama Sistemi (Java)
+# 🚗 Araç Kiralama Sistemi (Java)
 
-Bu proje, nesne yönelimli programlama (OOP) prensipleri kullanılarak geliştirilmiş console tabanlı bir araç kiralama sistemidir.
-Proje, Java dili ile yazılmış olup eğitim amaçlıdır.
+Bu proje, Java dili kullanılarak geliştirilmiş **console tabanlı bir araç kiralama sistemidir**.  
+Proje, **Nesne Yönelimli Programlama (OOP)** prensiplerine uygun olarak tasarlanmıştır ve araç kiralama–iade süreçlerini yönetir.
 
-⚠️ Not:
-Repository açıldığında main branch üzerinde yalnızca bu README bulunmaktadır.
-Tüm kaynak kodlar master branch’inde yer almaktadır.
+---
 
-##📌 Projenin Amacı
+## 📌 Proje Özellikleri
 
-Bu projenin amacı:
+- Elektrikli ve benzinli araç desteği
+- Araç ekleme ve çıkarma
+- Müsait araçları listeleme
+- Araç kiralama ve iade işlemleri
+- Kiralama geçmişi takibi
+- Ödeme sistemi (Kredi Kartı, Havale, Nakit)
+- JUnit 5 ile birim testler
+- JavaDoc dokümantasyonu
 
-OOP kavramlarını (Inheritance, Polymorphism, Encapsulation, Interface) uygulamak
+---
 
-Gerçek hayata yakın bir araç kiralama senaryosu modellemek
+## 🧱 Kullanılan OOP Kavramları
 
-Katmanlı ve düzenli bir proje yapısı oluşturmaktır
+- **Kalıtım (Inheritance)**  
+  `Car` → `ElectricCar`, `GasCar`
 
-##🧩 Kullanılan Teknolojiler
+- **Polimorfizm (Polymorphism)**  
+  `calculateRentalFee()` metodu override edilmiştir.
 
-Java 21
+- **Arayüz (Interface)**  
+  `Rentable` arayüzü ile kiralanabilir nesneler tanımlanmıştır.
 
-Console tabanlı kullanıcı arayüzü
+- **Kapsülleme (Encapsulation)**  
+  Sınıf alanları private/protected olarak tanımlanmıştır.
 
-JUnit (unit testler için)
+---
 
-JavaDoc (dokümantasyon için)
-
-##🏗️ Proje Yapısı
-src/
- ├─ models/
- │   ├─ Car
- │   ├─ ElectricCar
- │   ├─ GasCar
- │   ├─ Customer
- │   ├─ RentalRecord
- │   ├─ Payment
- │   ├─ PaymentMethod
- │   ├─ Transmission
- │   └─ Rentable
- │
- ├─ services/
- │   ├─ CarInventory
- │   └─ RentalService
- │
- └─ Main.java
+## 🗂️ Proje Paket Yapısı
+src
+├── interfaces
+│ └── Rentable.java
+│
+├── models
+│ ├── Vehicle.java
+│ ├── Car.java
+│ ├── ElectricCar.java
+│ ├── GasCar.java
+│ ├── Customer.java
+│ ├── RentalRecord.java
+│ ├── Payment.java
+│ ├── PaymentMethod.java
+│ └── Transmission.java
+│
+├── services
+│ ├── CarInventory.java
+│ └── RentalService.java
+│
+└── Main.java
 
 ##🚘 Sistem Özellikleri
 
@@ -70,40 +80,46 @@ Kredi kartı için kart bilgisi doğrulama
 
 JavaDoc ile dokümantasyon
 
-##▶️ Programın Çalışma Mantığı
 
-Kullanıcı konsol üzerinden:
+---
 
-Müsait araçları listeler
+## 💳 Ödeme Sistemi
 
-Araç kiralar
+Desteklenen ödeme yöntemleri:
 
-Araç iade eder
+- **Kredi Kartı**  
+  Kart sahibi, kart numarası, son kullanma tarihi ve CVV bilgileri alınır.
 
-Kiralama geçmişini görüntüler
+- **Havale**  
+  Sistem tarafından otomatik IBAN bilgisi sağlanır.
 
-Tüm işlemler RentalService ve CarInventory sınıfları üzerinden yönetilir.
+- **Nakit**
 
-##🧪 Testler
+---
 
-Temel işlevler için JUnit testleri yazılmıştır
+## 🧾 Kiralama Geçmişi
 
-Kiralama, iade ve ödeme senaryoları test edilmiştir
+- Yapılan tüm kiralamalar `RentalRecord` sınıfı ile kayıt altına alınır.
+- Araç iade edildiğinde, kiralama durumu **“İade Edildi”** olarak güncellenir.
+- Kiralama tarihi, süre ve toplam ücret bilgileri görüntülenebilir.
 
-##📚 Dokümantasyon
+---
 
-Projedeki tüm sınıflar ve metotlar JavaDoc ile açıklanmıştır
+## 🧪 Testler
 
-javadoc komutu ile /doc klasörü oluşturulabilir
+Proje kapsamında **JUnit 5** kullanılarak birim testler yazılmıştır.
 
-##📌 Branch Bilgisi
+Test edilen başlıca alanlar:
+- Araç listeleme
+- Araç kiralama
+- Araç iade işlemleri
+- Envanter filtreleme
 
-main → README (tanıtım amaçlı)
+---
 
-master → Tüm proje kaynak kodları
+## 📚 JavaDoc
 
-##👤 Geliştirici
+Tüm sınıflar ve önemli metotlar için **JavaDoc açıklamaları** eklenmiştir.  
+JavaDoc çıktısı `doc/` klasörü altında oluşturulmuştur.
 
-Öğrenci Projesi
-
-Eğitim ve öğrenme amaçlı geliştirilmiştir
+---
