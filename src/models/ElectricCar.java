@@ -7,12 +7,6 @@ package models;
  */
 
 public class ElectricCar extends Car {
-
-	/**
-	 * Elektrikli araçları temsil eden sınıftır.
-	 * Car sınıfından türetilmiştir ve kiralama ücretini
-	 * gün sayısına göre hesaplar.
-	 */
 	
     public ElectricCar(String id, String brand, String model, int year,double dailyPrice) {
         super(id, brand, model, year,dailyPrice);

@@ -66,12 +66,13 @@ public class RentalService {
 
         for (RentalRecord record : rentalHistory) {
             if (record.getCar().equals(car) && !record.isReturned()) {
+            	car.returnVehicle();
                 record.setReturned(true);
-                break;
+                System.out.println("Araç iade edildi: " + car);
+                return;
             }
         }
-
-        System.out.println("Araç iade edildi: " + car);
+        System.out.println("Bu araç şu anda kirada değil, iade edilemez.");
     }
     /**
      * Tüm kiralama geçmişini döner.

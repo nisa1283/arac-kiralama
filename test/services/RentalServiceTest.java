@@ -16,7 +16,7 @@ public class RentalServiceTest {
     @BeforeEach
     void setUp() {
         rentalService = new RentalService();
-        testCar = new ElectricCar("E1", "Tesla", "Model 3", 2022, 100);
+        testCar = new ElectricCar("E1", "Tesla", "Model 3", 2022, 250);
         customer = new Customer("Test User", "5551234567");
     }
 
@@ -51,11 +51,11 @@ public class RentalServiceTest {
 
     @Test
     void testRentCarWithPayment() {
-        Payment payment = new Payment(300, PaymentMethod.CASH);
+        Payment payment = new Payment(750, PaymentMethod.CASH);
         rentalService.rentCar(testCar, customer, 3, payment);
 
         RentalRecord record = rentalService.getRentalHistory().get(0);
         assertNotNull(record);
-        assertEquals(300, record.getTotalFee());
+        assertEquals(750, record.getTotalFee());
     }
 }
